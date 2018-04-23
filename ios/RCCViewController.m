@@ -627,6 +627,12 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
             if (prefersLargeTitles) {
                 if ([prefersLargeTitles boolValue]) {
                     self.navigationController.navigationBar.prefersLargeTitles = YES;
+                    id navBarTextColor = self.navigatorStyle[@"navBarTextColor"];
+                    if (navBarTextColor)
+                    {
+                        UIColor *color = navBarTextColor != (id)[NSNull null] ? [RCTConvert UIColor:navBarTextColor] : nil;
+                        self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName: color};
+                    }
                     self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
                     self.navigationItem.titleView = nil;
                 } else {
